@@ -78,11 +78,11 @@ public class Ticket {
             return false;
         }
         Ticket ticket = (Ticket) o;
-        return id == ticket.id && userId == ticket.userId;
+        return sessionId == ticket.sessionId && rowNumber == ticket.rowNumber && placeNumber == ticket.placeNumber;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId);
+        return Objects.hash(sessionId, rowNumber, placeNumber);
     }
 }
