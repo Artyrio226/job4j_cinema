@@ -1,17 +1,17 @@
-create table files
+create table IF NOT EXISTS files
 (
     id   serial primary key,
     name varchar not null,
     path varchar not null unique
 );
 
-create table genres
+create table IF NOT EXISTS genres
 (
     id   serial primary key,
     name varchar unique not null
 );
 
-create table films
+create table IF NOT EXISTS films
 (
     id                  serial primary key,
     name                varchar                    not null,
@@ -23,7 +23,7 @@ create table films
     file_id             int references files (id)  not null
 );
 
-create table halls
+create table IF NOT EXISTS halls
 (
     id          serial primary key,
     name        varchar not null,
@@ -32,7 +32,7 @@ create table halls
     description varchar not null
 );
 
-create table film_sessions
+create table IF NOT EXISTS film_sessions
 (
     id         serial primary key,
     film_id    int references films (id) not null,
@@ -42,7 +42,7 @@ create table film_sessions
     price      int                       not null
 );
 
-create table users
+create table IF NOT EXISTS users
 (
     id        serial primary key,
     full_name varchar        not null,
@@ -50,7 +50,7 @@ create table users
     password  varchar        not null
 );
 
-create table tickets
+create table IF NOT EXISTS tickets
 (
     id           serial primary key,
     session_id   int references film_sessions (id) not null,

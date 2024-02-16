@@ -26,7 +26,7 @@
     <div class="container">
         <form class="mt-3" th:action="@{/tickets/buy}" method="post">
             <div class="row mb-3">
-                <div class="col-lg-5  gy-5">
+                <div class="col-lg-4  gy-5">
                     <div class="mb-3">
                         <img th:src="@{/files/{fileId}(fileId=${filmSession.film.fileId})}" width="100%"
                              alt="No image"/>
@@ -49,8 +49,9 @@
                 <div class="col-lg-4 gy-2">
                     <div class="mb-3">
                         <h3><span th:text="${filmSession.film.name}"></span></h3>
-                        <h7>Начало сеанса: <span th:text="${filmSession.startTime}"></span>.</h7>
-                        <h5><span th:text="${filmSession.price}"></span> руб.</h5>
+                        <h6>Начало сеанса: <span th:text="${filmSession.startTime}"></span>.</h6>
+                        <h6>Возраст: <span th:text="|${filmSession.film.minimalAge}+|"></span>.</h6>
+                        <h3>Цена: <span th:text="${filmSession.price}"></span> руб.</h3>
                     </div>
                     <div class="row">
                         <div class="row mb-3">
@@ -92,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <table class="table table-sm table-borderless text-white">
                         <thead>
                         <h5 class="text-center"> ЭКРАН </h5>
@@ -100,14 +101,14 @@
                         <tbody>
                         <tr th:each="row: ${filmSession.hall.getRows().iterator()}">
                             <td>
-                                <h5 th:text="${row + 1}"></h5>
+                                <h5 th:text="|${row + 1} ряд|"></h5>
                             </td>
-                            <td th:each="places: ${filmSession.hall.getPlaces(row).iterator()}">
+                            <td th:each="places, index: ${filmSession.hall.getPlaces(row).iterator()}">
                                 <div th:if="${places == 0}">
-                                    <i class="bi bi-caret-up-square-fill" style="color: green"></i>
+                                    <i class="bi bi-caret-up-square-fill" style="color: green" th:title="${index.index + 1}"></i>
                                 </div>
                                 <div th:if="${places == 1}">
-                                    <i class="bi bi-caret-up-square-fill" style="color: red"></i>
+                                    <i class="bi bi-caret-up-square-fill" style="color: red" th:title="${index.index + 1}"></i>
                                 </div>
                             </td>
                         </tr>

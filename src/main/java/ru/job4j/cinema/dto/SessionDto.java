@@ -2,6 +2,8 @@ package ru.job4j.cinema.dto;
 
 import ru.job4j.cinema.model.Film;
 
+import java.util.Objects;
+
 public class SessionDto {
     private int id;
     private Film film;
@@ -55,5 +57,22 @@ public class SessionDto {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SessionDto that = (SessionDto) o;
+        return id == that.id && Objects.equals(hallDto, that.hallDto) && Objects.equals(startTime, that.startTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, hallDto, startTime);
     }
 }

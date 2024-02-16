@@ -19,10 +19,10 @@ public class FileController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable int id) {
-        var file = fileService.getFileById(id);
-        if (file == null) {
+        var fileDto = fileService.getFileById(id);
+        if (fileDto == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(file.getContent());
+        return ResponseEntity.ok(fileDto.getContent());
     }
 }

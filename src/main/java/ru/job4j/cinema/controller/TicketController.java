@@ -28,7 +28,7 @@ public class TicketController {
         }
         var sessionDto = (SessionDto) session.getAttribute("sessionDto");
         var foundTicket = ticketService.findUniqueTicket(sessionDto.getId(), ticket.getRowNumber(), ticket.getPlaceNumber());
-        if (foundTicket.isPresent()) {
+        if (foundTicket.isEmpty()) {
             model.addAttribute("message",
                     "Не удалось приобрести билет на заданное место. "
                             + "Вероятно оно уже занято. Перейдите на страницу бронирования билетов "

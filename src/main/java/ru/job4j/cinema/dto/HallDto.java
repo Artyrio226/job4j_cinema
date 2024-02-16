@@ -4,6 +4,7 @@ import ru.job4j.cinema.model.Hall;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HallDto {
     private int id;
@@ -97,4 +98,20 @@ public class HallDto {
         this.description = description;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        HallDto hallDto = (HallDto) o;
+        return id == hallDto.id && Objects.equals(name, hallDto.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 }

@@ -5,14 +5,14 @@ import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.repository.FilmRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class SimpleFilmService implements FilmService {
 
-    private final ConcurrentHashMap<Integer, FilmDto> dtoFilms = new ConcurrentHashMap<>();
     private final FilmRepository filmRepository;
     private final GenreService genreService;
 
@@ -33,12 +33,13 @@ public class SimpleFilmService implements FilmService {
 
     @Override
     public Collection<FilmDto> findAll() {
+        List<FilmDto> list = new ArrayList<>();
         var films = filmRepository.findAll();
         for (Film film : films) {
             FilmDto filmDto = getFilmDto(film);
-            dtoFilms.putIfAbsent(film.getId(), filmDto);
+            list.add(filmDto);
         }
-        return dtoFilms.values();
+        return list;
     }
 
     private FilmDto getFilmDto(Film film) {

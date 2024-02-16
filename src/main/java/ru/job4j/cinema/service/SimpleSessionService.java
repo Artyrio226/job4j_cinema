@@ -10,9 +10,7 @@ import ru.job4j.cinema.repository.SessionRepository;
 import ru.job4j.cinema.repository.TicketRepository;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.*;
 
 @Service
 public class SimpleSessionService implements SessionService {
@@ -21,7 +19,6 @@ public class SimpleSessionService implements SessionService {
     private final HallService hallService;
     private final FilmRepository filmRepository;
     private final TicketRepository ticketRepository;
-    private final ConcurrentHashMap<Integer, SessionDto> sessionsDto = new ConcurrentHashMap<>();
 
     public SimpleSessionService(SessionRepository sessionRepository,
                                 HallService hallService,
@@ -41,12 +38,13 @@ public class SimpleSessionService implements SessionService {
 
     @Override
     public Collection<SessionDto> findAll() {
+        List<SessionDto> list = new ArrayList<>();
         var sessions = sessionRepository.findAll();
         for (Session session : sessions) {
             var sessionDto = getSessionDto(session);
-            sessionsDto.putIfAbsent(session.getId(), sessionDto);
+            list.add(sessionDto);
         }
-        return sessionsDto.values();
+        return list;
     }
 
     private SessionDto getSessionDto(Session session) {
