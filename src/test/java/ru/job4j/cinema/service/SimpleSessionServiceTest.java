@@ -71,7 +71,7 @@ class SimpleSessionServiceTest {
 
         var sessionsDto = sessionService.findAll();
 
-        assertThat(sessionsDto).isEqualTo(expectedSessionsDto);
+        assertThat(sessionsDto).usingRecursiveComparison().isEqualTo(expectedSessionsDto);
     }
 
     /**
@@ -94,6 +94,6 @@ class SimpleSessionServiceTest {
 
         var optionalSessionDto = sessionService.findById(session.getId());
 
-        assertThat(optionalSessionDto.get()).isEqualTo(sessionDto);
+        assertThat(optionalSessionDto.get()).usingRecursiveComparison().isEqualTo(sessionDto);
     }
 }
