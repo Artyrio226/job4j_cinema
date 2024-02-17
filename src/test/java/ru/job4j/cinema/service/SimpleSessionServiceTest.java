@@ -41,7 +41,7 @@ class SimpleSessionServiceTest {
      * Сервис находит все сеансы и возвращает Collection<SessionDto>.
      */
     @Test
-    public void whenRequestFilmListPageThenGetCollectionFilmDto() {
+    public void whenRequestSessionListPageThenGetCollectionSessionDto() {
         var dateFirst1 = LocalDateTime.of(2024, 2, 16, 17, 30);
         var dateSecond1 = LocalDateTime.of(2024, 2, 16, 19, 0);
         var session1 = new Session(4, 1, 1, dateFirst1, dateSecond1, 400);
@@ -79,7 +79,7 @@ class SimpleSessionServiceTest {
      * Находит сеанс по id и возвращает SessionDto.
      */
     @Test
-    public void whenFindByIdFilmThenGetOptionalFilmDto() {
+    public void whenFindByIdSessionThenGetOptionalSessionDto() {
         var dateFirst = LocalDateTime.of(2024, 2, 16, 14, 30);
         var dateSecond = LocalDateTime.of(2024, 2, 16, 17, 0);
         var session = new Session(4, 1, 2, dateFirst, dateSecond, 400);

@@ -27,7 +27,7 @@ class SimpleHallServiceTest {
      * возвращает HallDto.
      */
     @Test
-    public void whenFindGenreThenGetGenre() {
+    public void whenFindHallThenGetHall() {
         var hall = new Hall(2, "Главный зал", 15, 12, "Основной");
         when(hallRepository.findById(hall.getId())).thenReturn(hall);
 

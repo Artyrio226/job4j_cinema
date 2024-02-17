@@ -12,7 +12,6 @@ import ru.job4j.cinema.configuration.DatasourceConfiguration;
 import ru.job4j.cinema.model.Ticket;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Properties;
 
 class Sql2oTicketRepositoryTest {
@@ -69,7 +68,7 @@ class Sql2oTicketRepositoryTest {
      * Возвращает список всех купленных билетов по id сеанса.
      */
     @Test
-    public void whenSaveSeveralThenGetAll() {
+    public void whenSaveSeveralTicketsThenGetAll() {
         var ticket1 = sql2oTicketRepository.save(new Ticket(0, 1, 1, 1, 1));
         var ticket2 = sql2oTicketRepository.save(new Ticket(0, 1, 2, 2, 2));
         var ticket3 = sql2oTicketRepository.save(new Ticket(0, 1, 3, 3, 3));

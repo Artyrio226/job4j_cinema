@@ -42,6 +42,10 @@ class Sql2oUserRepositoryTest {
         }
     }
 
+    /**
+     * Тест на метод save().
+     * Удачное сохранение нового пользователя.
+     */
     @Test
     public void whenSaveUserThenSuccess() {
         var user = sql2oUserRepository.save(new User(1, "Anton", "user1@mail.ru", "123")).get();
@@ -49,6 +53,11 @@ class Sql2oUserRepositoryTest {
         assertThat(userOptional.isPresent()).isTrue();
     }
 
+    /**
+     * Тест на метод save().
+     * Неудачное сохранение нового пользователя.
+     * Возвращается пустой Optional<User>.
+     */
     @Test
     public void whenTryingToAddSameUserThenFailure() {
         var user = sql2oUserRepository.save(new User(1, "Anton", "user1@mail.ru", "123")).get();
@@ -56,6 +65,11 @@ class Sql2oUserRepositoryTest {
         assertThat(userOptional).isEmpty();
     }
 
+    /**
+     * Тест на метод findByEmailAndPassword().
+     * Удачный поиск пользователя по е-мэйлу и паролю.
+     * Возвращается Optional<User>.
+     */
     @Test
     public void whenUserIsFound() {
         var user = sql2oUserRepository.save(new User(1, "Anton", "user1@mail.ru", "123")).get();
@@ -63,6 +77,11 @@ class Sql2oUserRepositoryTest {
         assertThat(userOptional.isPresent()).isTrue();
     }
 
+    /**
+     * Тест на метод findByEmailAndPassword().
+     * Неудачный поиск пользователя по неверному е-мэйлу и верному паролю.
+     * Возвращается пустой Optional<User>.
+     */
     @Test
     public void whenUserIsNotFoundByEmail() {
         var user = sql2oUserRepository.save(new User(1, "Anton", "user1@mail.ru", "123")).get();
@@ -70,6 +89,11 @@ class Sql2oUserRepositoryTest {
         assertThat(userOptional.isEmpty()).isTrue();
     }
 
+    /**
+     * Тест на метод findByEmailAndPassword().
+     * Неудачный поиск пользователя по верному е-мэйлу и неверному паролю.
+     * Возвращается пустой Optional<User>.
+     */
     @Test
     public void whenUserIsNotFoundByPassword() {
         var user = sql2oUserRepository.save(new User(1, "Anton", "user1@mail.ru", "123")).get();

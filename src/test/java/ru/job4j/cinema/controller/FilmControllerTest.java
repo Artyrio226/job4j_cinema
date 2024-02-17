@@ -51,7 +51,7 @@ class FilmControllerTest {
      * Выводит найденный по id фильм на страницу фильма - films/one.
      */
     @Test
-    public void whenRequestFilmByIdThenGetFilmPage() {
+    public void whenRequestFilmByIdThenGetOneFilmPage() {
         var film2 = new FilmDto(2, "test2", "desc2", 2023,
                 18, 240, "genre2", 2);
         var expectedFilm = Optional.of(film2);

@@ -27,7 +27,7 @@ class SimpleFileServiceTest {
      * возвращает FileDto.
      */
     @Test
-    public void whenFindGenreThenGetGenre() {
+    public void whenFindFileThenGetFile() {
         var file = new File("Капитан Марвел 2", "files/CapMarvel2.jpg");
         file.setId(1);
         when(fileRepository.findById(file.getId())).thenReturn(file);

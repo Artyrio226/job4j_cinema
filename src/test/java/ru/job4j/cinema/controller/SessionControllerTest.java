@@ -59,7 +59,7 @@ class SessionControllerTest {
      * Выводит найденный по id сеанс на страницу сеанса - sessions/one.
      */
     @Test
-    public void whenRequestSessionByIdThenGetSessionPage() {
+    public void whenRequestSessionByIdThenGetOneSessionPage() {
         var film1 = new Film(1, "test1", "desc1", 2022, 1,
                 16, 120, 1);
         var hallDto1 = new HallDto(new Hall(1, "testHall1", 5, 5, "descHall1"));

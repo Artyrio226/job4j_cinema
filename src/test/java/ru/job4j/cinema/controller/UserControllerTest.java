@@ -30,7 +30,7 @@ class UserControllerTest {
      * При обращении возвращает страницу регистрации пользователей.
      */
     @Test
-    public void whenGetRegisterPageThenRegisterPage() {
+    public void whenGetRegisterPageThenGetRegisterPage() {
         var view = userController.getRegistrationPage();
         assertThat(view).isEqualTo("users/register");
     }
