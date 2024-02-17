@@ -36,13 +36,13 @@
 - Скачать проект job4j_cinema
 - Открыть проект в IDE
 - Создать БД cinema
-- Установить свои username и password в файле *src/main/resources/application.properties*
-- Запустить класс *src/main/java/ru/job4j/cinema/Main.java*
+- Установить свои username и password в файле **src/main/resources/application.properties**
+- Запустить класс **src/main/java/ru/job4j/cinema/Main.java**
 - В браузере открыть http://localhost:8080/
 
 ### Контакты
 
-![Telegram](https://t.me/Artyrio_226)
+[Telegram](https://t.me/Artyrio_226)
 
 ### Скриншоты 
 
