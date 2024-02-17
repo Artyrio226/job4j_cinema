@@ -48,25 +48,15 @@ class TicketControllerTest {
         mockHttpSession.setAttribute("sessionDto", sessionDto1);
         mockHttpSession.setAttribute("user", user);
 
-        var ticketArgumentCaptor = ArgumentCaptor.forClass(Ticket.class);
-        var sessionCellArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
-        var userArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
         when(ticketService.findUniqueTicket(any(Integer.class), any(Integer.class), any(Integer.class))).thenReturn(Optional.of(ticket));
-        when(ticketService.save(ticketArgumentCaptor.capture(),
-                sessionCellArgumentCaptor.capture(), userArgumentCaptor.capture()))
-                .thenReturn(ticket);
 
         var view = ticketController.register(model, mockHttpSession, ticket);
-        var actualTicket = ticketArgumentCaptor.getValue();
         var actualMessage = model.getAttribute("message");
-        var actualSessionCellId = sessionCellArgumentCaptor.getValue();
-        var actualUserId = userArgumentCaptor.getValue();
 
-        assertThat(view).isEqualTo("tickets/success");
-        assertThat(actualTicket).isEqualTo(ticket);
-        assertThat(actualMessage).isEqualTo("Вы успешно приобрели билет. Ряд: 1, место: 1");
-        assertThat(actualSessionCellId).isEqualTo(sessionDto1.getId());
-        assertThat(actualUserId).isEqualTo(user.getId());
+        assertThat(view).isEqualTo("tickets/failure");
+        assertThat(actualMessage).isEqualTo("Не удалось приобрести билет на заданное место. "
+                + "Вероятно оно уже занято. Перейдите на страницу бронирования билетов "
+                + "и попробуйте снова.");
     }
 
     /**
@@ -76,6 +66,7 @@ class TicketControllerTest {
      */
     @Test
     public void whenCreateTicketThenGetFailurePageWithMessage() {
+        var ticket = new Ticket(1, 1, 1, 1, 1);
         var film1 = new Film(1, "test1", "desc1", 2022, 1,
                 16, 120, 1);
         var hallDto1 = new HallDto(new Hall(1, "testHall1", 5, 5, "descHall1"));
@@ -88,14 +79,24 @@ class TicketControllerTest {
         mockHttpSession.setAttribute("user", user);
 
         var model = new ConcurrentModel();
+        var ticketArgumentCaptor = ArgumentCaptor.forClass(Ticket.class);
+        var sessionIdArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
+        var userArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
         when(ticketService.findUniqueTicket(any(Integer.class), any(Integer.class), any(Integer.class))).thenReturn(Optional.empty());
+        when(ticketService.save(ticketArgumentCaptor.capture(),
+                sessionIdArgumentCaptor.capture(), userArgumentCaptor.capture()))
+                .thenReturn(ticket);
 
-        var view = ticketController.register(model, mockHttpSession, new Ticket());
+        var view = ticketController.register(model, mockHttpSession, ticket);
         var actualMessage = model.getAttribute("message");
+        var actualTicket = ticketArgumentCaptor.getValue();
+        var actualSessionId = sessionIdArgumentCaptor.getValue();
+        var actualUserId = userArgumentCaptor.getValue();
 
-        assertThat(view).isEqualTo("tickets/failure");
-        assertThat(actualMessage).isEqualTo("Не удалось приобрести билет на заданное место. "
-                + "Вероятно оно уже занято. Перейдите на страницу бронирования билетов "
-                + "и попробуйте снова.");
+        assertThat(actualSessionId).isEqualTo(sessionDto1.getId());
+        assertThat(actualUserId).isEqualTo(user.getId());
+        assertThat(actualTicket).isEqualTo(ticket);
+        assertThat(view).isEqualTo("tickets/success");
+        assertThat(actualMessage).isEqualTo("Вы успешно приобрели билет. Ряд: 1, место: 1");
     }
 }
