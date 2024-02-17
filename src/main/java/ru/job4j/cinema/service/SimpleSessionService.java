@@ -14,7 +14,8 @@ import java.util.*;
 
 @Service
 public class SimpleSessionService implements SessionService {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("EEEE dd MMMM HH:mm");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter
+            .ofPattern("EEEE dd MMMM HH:mm", Locale.getDefault());
     private final SessionRepository sessionRepository;
     private final HallService hallService;
     private final FilmRepository filmRepository;
