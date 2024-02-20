@@ -7,6 +7,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
 import ru.job4j.cinema.model.Hall;
+import ru.job4j.cinema.repository.file.Sql2oFileRepository;
+import ru.job4j.cinema.repository.hall.Sql2oHallRepository;
 
 import java.util.Properties;
 

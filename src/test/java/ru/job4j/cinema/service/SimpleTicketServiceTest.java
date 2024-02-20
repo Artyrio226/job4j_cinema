@@ -3,7 +3,9 @@ package ru.job4j.cinema.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.model.Ticket;
-import ru.job4j.cinema.repository.TicketRepository;
+import ru.job4j.cinema.repository.ticket.TicketRepository;
+import ru.job4j.cinema.service.ticket.SimpleTicketService;
+import ru.job4j.cinema.service.ticket.TicketService;
 
 import java.util.Optional;
 

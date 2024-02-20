@@ -11,7 +11,7 @@ import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.model.Ticket;
 import ru.job4j.cinema.model.User;
-import ru.job4j.cinema.service.TicketService;
+import ru.job4j.cinema.service.ticket.TicketService;
 
 import java.util.Optional;
 

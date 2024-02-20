@@ -8,7 +8,7 @@ import ru.job4j.cinema.dto.HallDto;
 import ru.job4j.cinema.dto.SessionDto;
 import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.model.Hall;
-import ru.job4j.cinema.service.SessionService;
+import ru.job4j.cinema.service.session.SessionService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

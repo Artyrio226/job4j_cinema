@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.dto.HallDto;
 import ru.job4j.cinema.model.Hall;
-import ru.job4j.cinema.repository.HallRepository;
+import ru.job4j.cinema.repository.hall.HallRepository;
+import ru.job4j.cinema.service.hall.HallService;
+import ru.job4j.cinema.service.hall.SimpleHallService;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.mock;

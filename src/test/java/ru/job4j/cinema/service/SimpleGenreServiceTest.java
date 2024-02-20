@@ -3,7 +3,9 @@ package ru.job4j.cinema.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.model.Genre;
-import ru.job4j.cinema.repository.GenreRepository;
+import ru.job4j.cinema.repository.genre.GenreRepository;
+import ru.job4j.cinema.service.genre.GenreService;
+import ru.job4j.cinema.service.genre.SimpleGenreService;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.mock;

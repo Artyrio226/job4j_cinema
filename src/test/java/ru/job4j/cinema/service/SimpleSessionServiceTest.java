@@ -7,9 +7,12 @@ import ru.job4j.cinema.dto.SessionDto;
 import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.model.Session;
-import ru.job4j.cinema.repository.FilmRepository;
-import ru.job4j.cinema.repository.SessionRepository;
-import ru.job4j.cinema.repository.TicketRepository;
+import ru.job4j.cinema.repository.film.FilmRepository;
+import ru.job4j.cinema.repository.session.SessionRepository;
+import ru.job4j.cinema.repository.ticket.TicketRepository;
+import ru.job4j.cinema.service.hall.HallService;
+import ru.job4j.cinema.service.session.SessionService;
+import ru.job4j.cinema.service.session.SimpleSessionService;
 
 import java.time.LocalDateTime;
 import java.util.List;
