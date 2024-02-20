@@ -65,9 +65,9 @@ class UserControllerTest {
         when(userService.save(any(User.class))).thenReturn(Optional.empty());
 
         var view = userController.register(model, new User());
-        var actualMessage = model.getAttribute("message");
+        var actualMessage = model.getAttribute("error");
 
-        assertThat(view).isEqualTo("errors/404");
+        assertThat(view).isEqualTo("users/register");
         assertThat(actualMessage).isEqualTo("Пользователь с такой почтой уже существует");
     }
 
