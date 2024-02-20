@@ -1,15 +1,18 @@
 package ru.job4j.cinema.repository.ticket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.Ticket;
-import ru.job4j.cinema.repository.ticket.TicketRepository;
+import ru.job4j.cinema.repository.user.Sql2oUserRepository;
 
 import java.util.Collection;
 import java.util.Optional;
 
 @Repository
 public class Sql2oTicketRepository implements TicketRepository {
+    private static final Logger LOG = LoggerFactory.getLogger(Sql2oUserRepository.class.getName());
     private final Sql2o sql2o;
 
     public Sql2oTicketRepository(Sql2o sql2o) {
@@ -17,7 +20,7 @@ public class Sql2oTicketRepository implements TicketRepository {
     }
 
     @Override
-    public Ticket save(Ticket ticket) {
+    public Optional<Ticket> save(Ticket ticket) {
         try (var connection = sql2o.open()) {
             var sql = """
                     INSERT INTO tickets(session_id, row_number, place_number, user_id)
@@ -30,8 +33,11 @@ public class Sql2oTicketRepository implements TicketRepository {
                     .addParameter("userId", ticket.getUserId());
             int generatedId = query.executeUpdate().getKey(Integer.class);
             ticket.setId(generatedId);
-            return ticket;
+            return Optional.of(ticket);
+        } catch (Exception exception) {
+            LOG.error("Неудачная покупка билета. Exception in log example", exception);
         }
+        return Optional.empty();
     }
 
     @Override

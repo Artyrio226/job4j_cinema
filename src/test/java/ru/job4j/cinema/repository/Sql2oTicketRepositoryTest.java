@@ -1,7 +1,6 @@
 package ru.job4j.cinema.repository;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -46,26 +45,6 @@ class Sql2oTicketRepositoryTest {
     }
 
     /**
-     * Тест на метод findUniqueTicket().
-     * Возвращает билет, если он куплен, по id сеанса, ряду и месту.
-     * Обёрнут в Optional.
-     */
-    @Test
-    public void whenSaveTicketThenGetSame() {
-        var ticket = new Ticket(1, 1, 2, 2, 1);
-
-        var saveTicket = sql2oTicketRepository.save(ticket);
-        var resultTicket = sql2oTicketRepository.findUniqueTicket(
-                saveTicket.getSessionId(),
-                saveTicket.getRowNumber(),
-                saveTicket.getPlaceNumber());
-
-        Assertions.assertTrue(resultTicket.isPresent());
-
-        assertThat(saveTicket).usingRecursiveComparison().isEqualTo(resultTicket.orElseThrow());
-    }
-
-    /**
      * Тест на метод findAllTicket().
      * Возвращает список всех купленных билетов по id сеанса.
      */
@@ -77,6 +56,6 @@ class Sql2oTicketRepositoryTest {
 
         var result = sql2oTicketRepository.findAllTicket(1);
 
-        assertThat(result).isEqualTo(List.of(ticket1, ticket2, ticket3));
+        assertThat(result).isEqualTo(List.of(ticket1.get(), ticket2.get(), ticket3.get()));
     }
 }

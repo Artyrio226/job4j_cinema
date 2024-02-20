@@ -32,11 +32,11 @@ class SimpleTicketServiceTest {
     @Test
     public void whenSaveTicketThenGetTicket() {
         var ticket = new Ticket(1, 1, 3, 3, 1);
-        when(ticketRepository.save(ticket)).thenReturn(ticket);
+        when(ticketRepository.save(ticket)).thenReturn(Optional.of(ticket));
 
         var savedTicket = ticketService.save(ticket, ticket.getSessionId(), ticket.getUserId());
 
-        assertThat(savedTicket).isEqualTo(ticket);
+        assertThat(savedTicket.get()).isEqualTo(ticket);
     }
 
     /**

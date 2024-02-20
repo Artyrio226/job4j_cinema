@@ -85,7 +85,7 @@ class TicketControllerTest {
         when(ticketService.findUniqueTicket(any(Integer.class), any(Integer.class), any(Integer.class))).thenReturn(Optional.empty());
         when(ticketService.save(ticketArgumentCaptor.capture(),
                 sessionIdArgumentCaptor.capture(), userArgumentCaptor.capture()))
-                .thenReturn(ticket);
+                .thenReturn(Optional.of(ticket));
 
         var view = ticketController.register(model, mockHttpSession, ticket);
         var actualMessage = model.getAttribute("message");

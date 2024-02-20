@@ -15,7 +15,7 @@ public class SimpleTicketService implements TicketService {
     }
 
     @Override
-    public Ticket save(Ticket ticket, int sessionId, int userId) {
+    public Optional<Ticket> save(Ticket ticket, int sessionId, int userId) {
         ticket.setSessionId(sessionId);
         ticket.setUserId(userId);
         return ticketRepository.save(ticket);
